@@ -6,23 +6,7 @@
 
 <title>Thunder Hub | Online Marketplace</title>
 
-<meta name="description"
-content="Thunder Hub - Shop different commodities in one powerful online marketplace.">
-
 <style>
-
-:root{
---gold:#ffbf00;
---gold2:#ffd84d;
---dark:#05070b;
---dark2:#111827;
---card:#ffffff;
---light:#f5f7fb;
---text:#111827;
---muted:#667085;
---danger:#dc2626;
-}
-
 *{
 box-sizing:border-box;
 margin:0;
@@ -30,39 +14,37 @@ padding:0;
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:var(--light);
-color:var(--text);
+font-family:Arial,sans-serif;
+background:#f5f6f8;
+color:#111827;
 }
 
-/* HEADER */
-
 header{
-background:linear-gradient(135deg,#030405,#151e2f);
+background:#07090d;
 color:white;
 position:sticky;
 top:0;
 z-index:100;
-box-shadow:0 5px 25px #0004;
+box-shadow:0 4px 20px #0004;
 }
 
 .nav{
-max-width:1250px;
+max-width:1200px;
 margin:auto;
-padding:14px 18px;
+padding:14px 15px;
 display:flex;
 align-items:center;
 gap:15px;
 }
 
 .logo{
-font-size:25px;
+font-size:24px;
 font-weight:900;
 white-space:nowrap;
 }
 
 .logo span{
-color:var(--gold);
+color:#ffbf00;
 }
 
 .search{
@@ -74,39 +56,36 @@ overflow:hidden;
 }
 
 .search input{
-width:100%;
+flex:1;
 border:0;
-outline:none;
-padding:13px 18px;
+outline:0;
+padding:13px 17px;
 font-size:15px;
 }
 
 .search button{
+background:#ffbf00;
 border:0;
-background:var(--gold);
 padding:0 20px;
 font-weight:bold;
 cursor:pointer;
 }
 
 .cart{
-border:1px solid #ffffff25;
-background:#202a3a;
+background:#1b2432;
 color:white;
-border-radius:12px;
+border:1px solid #ffffff22;
 padding:11px 15px;
-cursor:pointer;
+border-radius:10px;
 }
 
 .cart b{
-color:var(--gold);
+color:#ffbf00;
 }
-
-/* HERO */
 
 .hero{
 background:
-radial-gradient(circle at 80% 15%,#4b3600 0,#111827 35%,#05070b 75%);
+radial-gradient(circle at 80% 20%,#5b4100,#111827 38%,#05070b 75%);
 color:white;
 padding:65px 20px;
 }
@@ -122,36 +101,34 @@ align-items:center;
 
 .badge{
 display:inline-block;
-background:#ffbf0018;
 border:1px solid #ffbf0066;
 color:#ffd84d;
-padding:8px 14px;
+padding:8px 13px;
 border-radius:30px;
 margin-bottom:18px;
-font-weight:bold;
 }
 
 .hero h1{
-font-size:clamp(42px,7vw,76px);
+font-size:clamp(42px,7vw,75px);
 line-height:.95;
 margin-bottom:20px;
 }
 
 .hero h1 span{
-color:var(--gold);
+color:#ffbf00;
 }
 
 .hero p{
 font-size:18px;
 line-height:1.7;
-color:#c7ceda;
+color:#cbd2dc;
 max-width:650px;
 }
 
 .cta{
 display:inline-block;
 margin-top:25px;
-background:var(--gold);
+background:#ffbf00;
 color:#111;
 padding:14px 22px;
 border-radius:12px;
@@ -171,27 +148,13 @@ text-align:center;
 font-size:90px;
 }
 
-.hero-box h2{
-font-size:28px;
-margin:10px 0;
-}
-
-.hero-box p{
-font-size:15px;
-}
-
-/* GENERAL */
-
 .container{
-max-width:1250px;
+max-width:1200px;
 margin:auto;
-padding:35px 18px;
+padding:35px 15px;
 }
 
 .section-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
 margin-bottom:20px;
 }
 
@@ -200,11 +163,9 @@ font-size:28px;
 }
 
 .section-title p{
-color:var(--muted);
+color:#667085;
 margin-top:5px;
 }
-
-/* CATEGORIES */
 
 .categories{
 display:grid;
@@ -215,24 +176,21 @@ gap:12px;
 .category{
 background:white;
 border:1px solid #e5e7eb;
-border-radius:16px;
-padding:18px 10px;
+border-radius:15px;
+padding:18px 8px;
 text-align:center;
 cursor:pointer;
-transition:.2s;
 }
 
 .category:hover{
-transform:translateY(-4px);
-box-shadow:0 12px 30px #0001;
+transform:translateY(-3px);
+box-shadow:0 10px 25px #0001;
 }
 
 .category-icon{
-font-size:32px;
+font-size:30px;
 margin-bottom:8px;
 }
-
-/* PRODUCTS */
 
 .products{
 display:grid;
@@ -245,11 +203,10 @@ background:white;
 border-radius:18px;
 overflow:hidden;
 border:1px solid #e5e7eb;
-box-shadow:0 8px 25px #00000009;
+box-shadow:0 7px 25px #00000009;
 }
 
 .product-image{
-width:100%;
 height:220px;
 background:#eef1f5;
 display:flex;
@@ -264,21 +221,17 @@ height:100%;
 object-fit:cover;
 }
 
-.product-image .emoji{
-font-size:75px;
-}
-
 .product-info{
-padding:16px;
+padding:15px;
 }
 
-.product-category{
+.category-tag{
 display:inline-block;
-background:#fff5cf;
-color:#8a6500;
+background:#fff4c7;
+color:#806000;
 padding:5px 9px;
-border-radius:20px;
 font-size:11px;
+border-radius:20px;
 font-weight:bold;
 }
 
@@ -288,10 +241,9 @@ font-size:17px;
 }
 
 .description{
-color:#667085;
 font-size:13px;
+color:#667085;
 line-height:1.5;
-min-height:38px;
 }
 
 .price{
@@ -302,161 +254,19 @@ margin-top:10px;
 
 .buy{
 width:100%;
-margin-top:12px;
 border:0;
 background:#111827;
 color:white;
 padding:12px;
+margin-top:12px;
 border-radius:10px;
 font-weight:bold;
 cursor:pointer;
 }
 
 .buy:hover{
-background:#263247;
+background:#273449;
 }
-
-/* ADMIN */
-
-.admin-section{
-background:#0b0f17;
-color:white;
-padding:50px 18px;
-margin-top:30px;
-}
-
-.admin-box{
-max-width:900px;
-margin:auto;
-background:#151c29;
-padding:25px;
-border-radius:20px;
-border:1px solid #ffffff14;
-}
-
-.admin-title{
-margin-bottom:20px;
-}
-
-.admin-title h2{
-color:var(--gold);
-}
-
-.admin-title p{
-color:#aeb6c5;
-margin-top:6px;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-.form-group{
-margin-bottom:15px;
-}
-
-.form-group.full{
-grid-column:1/-1;
-}
-
-.form-group label{
-display:block;
-font-weight:bold;
-margin-bottom:7px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-width:100%;
-padding:13px;
-border-radius:10px;
-border:1px solid #334155;
-background:#0e1420;
-color:white;
-outline:none;
-}
-
-.form-group textarea{
-height:100px;
-resize:vertical;
-}
-
-.image-preview{
-height:220px;
-border:2px dashed #596579;
-border-radius:14px;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-margin-top:8px;
-color:#8e99aa;
-text-align:center;
-}
-
-.image-preview img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.upload-btn{
-background:var(--gold);
-color:#111;
-border:0;
-padding:14px 22px;
-border-radius:10px;
-font-weight:900;
-cursor:pointer;
-font-size:15px;
-}
-
-.upload-btn:hover{
-background:var(--gold2);
-}
-
-/* ADMIN PRODUCT LIST */
-
-.admin-products{
-margin-top:30px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-}
-
-.admin-product{
-background:#0e1420;
-border:1px solid #ffffff14;
-border-radius:14px;
-overflow:hidden;
-}
-
-.admin-product img{
-width:100%;
-height:160px;
-object-fit:cover;
-}
-
-.admin-product-info{
-padding:12px;
-}
-
-.delete-btn{
-margin-top:10px;
-width:100%;
-background:var(--danger);
-color:white;
-border:0;
-padding:9px;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-}
-
-/* FEATURES */
 
 .features{
 background:#0b0f17;
@@ -466,7 +276,7 @@ color:white;
 .features-inner{
 max-width:1200px;
 margin:auto;
-padding:40px 18px;
+padding:40px 15px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:25px;
@@ -483,16 +293,14 @@ margin-bottom:10px;
 
 .feature p{
 color:#aeb6c5;
-margin-top:7px;
 line-height:1.6;
+margin-top:7px;
 }
-
-/* FOOTER */
 
 footer{
 background:#030405;
 color:#aeb6c5;
-padding:35px 18px;
+padding:35px 15px;
 }
 
 .footer-inner{
@@ -505,42 +313,41 @@ flex-wrap:wrap;
 }
 
 .footer-brand{
-font-size:21px;
+font-size:22px;
 font-weight:bold;
 color:white;
 }
 
 .phone{
-color:var(--gold);
+color:#ffbf00;
 font-weight:bold;
 }
-
-/* TOAST */
 
 #toast{
 position:fixed;
 bottom:25px;
 left:50%;
-transform:translateX(-50%) translateY(120px);
+transform:translate(-50%,120px);
 background:#111827;
 color:white;
 padding:14px 20px;
 border-radius:12px;
-z-index:200;
 transition:.3s;
-box-shadow:0 8px 30px #0004;
+z-index:300;
 }
 
 #toast.show{
-transform:translateX(-50%) translateY(0);
+transform:translate(-50%,0);
 }
 
-/* MOBILE */
-
-@media(max-width:950px){
+@media(max-width:900px){
 
 .hero-inner{
 grid-template-columns:1fr;
+}
+
+.hero-box{
+display:none;
 }
 
 .categories{
@@ -548,10 +355,6 @@ grid-template-columns:repeat(3,1fr);
 }
 
 .products{
-grid-template-columns:repeat(2,1fr);
-}
-
-.admin-products{
 grid-template-columns:repeat(2,1fr);
 }
 
@@ -577,14 +380,6 @@ flex-basis:100%;
 padding:45px 15px;
 }
 
-.hero-box{
-display:none;
-}
-
-.container{
-padding:28px 12px;
-}
-
 .categories{
 grid-template-columns:repeat(3,1fr);
 gap:8px;
@@ -595,7 +390,7 @@ padding:13px 5px;
 }
 
 .category-icon{
-font-size:27px;
+font-size:26px;
 }
 
 .products{
@@ -604,11 +399,7 @@ gap:10px;
 }
 
 .product-image{
-height:150px;
-}
-
-.product-image .emoji{
-font-size:55px;
+height:155px;
 }
 
 .product-info{
@@ -623,36 +414,15 @@ font-size:14px;
 font-size:17px;
 }
 
-.form-grid{
-grid-template-columns:1fr;
-}
-
-.form-group.full{
-grid-column:auto;
-}
-
-.admin-products{
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.admin-product img{
-height:120px;
-}
-
 .features-inner{
 grid-template-columns:1fr;
 }
 
 }
-
 </style>
 </head>
 
 <body>
-
-
-<!-- HEADER -->
 
 <header>
 
@@ -667,7 +437,7 @@ grid-template-columns:1fr;
 <input
 id="search"
 placeholder="Search products..."
-onkeyup="searchProducts()"
+oninput="searchProducts()"
 >
 
 <button onclick="searchProducts()">
@@ -676,7 +446,7 @@ Search
 
 </div>
 
-<button class="cart" onclick="showCart()">
+<button class="cart">
 🛒 Cart <b id="cartCount">0</b>
 </button>
 
@@ -684,8 +454,6 @@ Search
 
 </header>
 
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -704,8 +472,8 @@ Shop Smart.<br>
 
 <p>
 Welcome to Thunder Hub — your powerful online
-marketplace for different commodities, quality
-products and everyday essentials.
+marketplace for electronics, fashion, home items,
+beauty products, groceries and many other commodities.
 </p>
 
 <a href="#products" class="cta">
@@ -736,23 +504,17 @@ Everything you need, all in one place.
 </section>
 
 
-<!-- CATEGORIES -->
-
 <section class="container">
 
 <div class="section-title">
-
-<div>
 
 <h2>
 Shop by Category
 </h2>
 
 <p>
-Choose a category to find products.
+Find the products you need.
 </p>
-
-</div>
 
 </div>
 
@@ -835,8 +597,6 @@ onclick="filterCategory('Others')">
 </section>
 
 
-<!-- PRODUCTS -->
-
 <section
 class="container"
 id="products"
@@ -844,222 +604,50 @@ id="products"
 
 <div class="section-title">
 
-<div>
-
 <h2>
-Our Products
+🔥 Products Available
 </h2>
 
 <p>
-Browse products available at Thunder Hub.
+Shop from Thunder Hub.
 </p>
 
 </div>
-
-</div>
-
 
 <div
 class="products"
 id="productGrid"
-></div>
-
-</section>
-
-
-<!-- ADMIN PRODUCT UPLOAD -->
-
-<section class="admin-section">
-
-<div class="admin-box">
-
-<div class="admin-title">
-
-<h2>
-⚡ Add Products to Thunder Hub
-</h2>
+>
 
 <p>
-Upload a picture of the item, enter the product
-information and add it to your marketplace.
+Loading products...
 </p>
 
 </div>
 
-
-<form
-id="productForm"
->
-
-<div class="form-grid">
-
-
-<div class="form-group">
-
-<label>
-Product Name
-</label>
-
-<input
-id="productName"
-type="text"
-placeholder="e.g. Samsung Galaxy Phone"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Product Price
-</label>
-
-<input
-id="productPrice"
-type="text"
-placeholder="e.g. ₦250,000"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Category
-</label>
-
-<select
-id="productCategory"
-required
->
-
-<option value="">
-Select Category
-</option>
-
-<option>
-Electronics
-</option>
-
-<option>
-Fashion
-</option>
-
-<option>
-Home
-</option>
-
-<option>
-Beauty
-</option>
-
-<option>
-Grocery
-</option>
-
-<option>
-Others
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Product Image
-</label>
-
-<input
-id="productImage"
-type="file"
-accept="image/*"
-required
-onchange="previewImage(event)"
->
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-Product Description
-</label>
-
-<textarea
-id="productDescription"
-placeholder="Describe the product..."
-></textarea>
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-Image Preview
-</label>
-
-<div
-class="image-preview"
-id="imagePreview"
->
-
-Select a product picture above
-
-</div>
-
-</div>
-
-
-<div class="form-group full">
-
-<button
-class="upload-btn"
-type="submit"
->
-⚡ ADD PRODUCT TO THUNDER HUB
-</button>
-
-</div>
-
-</div>
-
-</form>
-
-
-<!-- ADMIN PRODUCT LIST -->
-
-<div>
-
-<h3 style="margin-top:25px;">
-Products You Added
-</h3>
-
-<div
-class="admin-products"
-id="adminProducts"
-></div>
-
-</div>
-
-</div>
-
 </section>
 
-
-<!-- FEATURES -->
 
 <section class="features">
 
 <div class="features-inner">
+
+<div class="feature">
+
+<div class="feature-icon">
+📸
+</div>
+
+<h3>
+Real Product Pictures
+</h3>
+
+<p>
+See pictures of products available
+before placing your order.
+</p>
+
+</div>
 
 
 <div class="feature">
@@ -1073,26 +661,8 @@ Easy Ordering
 </h3>
 
 <p>
-Customers can browse your products
-and contact Thunder Hub directly.
-</p>
-
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-📸
-</div>
-
-<h3>
-Product Pictures
-</h3>
-
-<p>
-Show customers clear pictures of the
-products you have available.
+Choose what you want and contact
+Thunder Hub directly.
 </p>
 
 </div>
@@ -1105,12 +675,12 @@ products you have available.
 </div>
 
 <h3>
-Direct Support
+Customer Support
 </h3>
 
 <p>
-Customers can call Thunder Hub for
-questions, orders and product information.
+Call or WhatsApp Thunder Hub for
+more information and orders.
 </p>
 
 </div>
@@ -1119,8 +689,6 @@ questions, orders and product information.
 
 </section>
 
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -1162,172 +730,170 @@ All rights reserved.
 </footer>
 
 
-<!-- TOAST -->
-
 <div id="toast">
-Product added successfully!
+Product added to cart
 </div>
 
 
-<script>
+<script type="module">
 
-/* DEFAULT PRODUCTS */
+/* =====================================================
+   FIREBASE CONFIGURATION
+   REPLACE THESE VALUES WITH YOUR FIREBASE DETAILS
+===================================================== */
 
-const defaultProducts = [
-
-{
-name:"Premium Smartphone",
-price:"₦185,000",
-category:"Electronics",
-description:"Quality smartphone for everyday use.",
-image:"",
-emoji:"📱"
-},
-
-{
-name:"Wireless Headphones",
-price:"₦35,000",
-category:"Electronics",
-description:"Quality wireless headphones.",
-image:"",
-emoji:"🎧"
-},
-
-{
-name:"Classic Fashion Wear",
-price:"₦28,000",
-category:"Fashion",
-description:"Beautiful and stylish fashion wear.",
-image:"",
-emoji:"👕"
-},
-
-{
-name:"Luxury Handbag",
-price:"₦45,000",
-category:"Fashion",
-description:"Elegant handbag for everyday use.",
-image:"",
-emoji:"👜"
-},
-
-{
-name:"Home Essentials",
-price:"₦22,000",
-category:"Home",
-description:"Useful products for your home.",
-image:"",
-emoji:"🏠"
-},
-
-{
-name:"Beauty Care Set",
-price:"₦18,500",
-category:"Beauty",
-description:"Quality beauty care products.",
-image:"",
-emoji:"💄"
-},
-
-{
-name:"Quality Food Items",
-price:"₦15,000",
-category:"Grocery",
-description:"Everyday food and grocery items.",
-image:"",
-emoji:"🛒"
-},
-
-{
-name:"Everyday Commodity",
-price:"₦12,000",
-category:"Others",
-description:"Useful everyday commodity.",
-image:"",
-emoji:"📦"
+import {
+initializeApp
 }
-
-];
-
-
-/* LOAD SAVED PRODUCTS */
-
-let products =
-JSON.parse(
-localStorage.getItem("thunderHubProducts")
-) || defaultProducts;
+from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
 
-/* CART */
+import {
+getDatabase,
+ref,
+onValue
+}
+from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"YOUR_API_KEY",
+
+authDomain:
+"YOUR_PROJECT.firebaseapp.com",
+
+databaseURL:
+"https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+
+projectId:
+"YOUR_PROJECT_ID",
+
+storageBucket:
+"YOUR_PROJECT.firebasestorage.app",
+
+messagingSenderId:
+"YOUR_MESSAGING_SENDER_ID",
+
+appId:
+"YOUR_APP_ID"
+
+};
+
+
+/* START FIREBASE */
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getDatabase(app);
+
+
+/* PRODUCTS */
+
+let products = [];
 
 let cart = 0;
 
 
-/* IMAGE PREVIEW */
+/* GET PRODUCTS FROM FIREBASE */
 
-function previewImage(event){
+const productsRef =
+ref(db,"products");
 
-const file =
-event.target.files[0];
 
-if(!file) return;
+onValue(
+productsRef,
+(snapshot)=>{
 
-const reader =
-new FileReader();
+const data =
+snapshot.val();
 
-reader.onload = function(e){
+products = [];
+
+if(data){
+
+Object.keys(data).forEach(id=>{
+
+products.push({
+
+id:id,
+
+...data[id]
+
+});
+
+});
+
+}
+
+renderProducts(products);
+
+},
+(error)=>{
+
+console.error(error);
 
 document.getElementById(
-"imagePreview"
+"productGrid"
 ).innerHTML =
 
-`<img src="${e.target.result}">`;
+`
+<div style="
+grid-column:1/-1;
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+">
 
-};
+<h3>
+Unable to load products
+</h3>
 
-reader.readAsDataURL(file);
+<p style="margin-top:8px;color:#667085;">
+Please check your Firebase connection.
+</p>
 
-}
+</div>
+`;
 
-
-/* SAVE PRODUCTS */
-
-function saveProducts(){
-
-localStorage.setItem(
-"thunderHubProducts",
-JSON.stringify(products)
-);
-
-}
+});
 
 
 /* DISPLAY PRODUCTS */
 
-function renderProducts(list = products){
+function renderProducts(list){
 
 const grid =
 document.getElementById(
 "productGrid"
 );
 
-if(list.length === 0){
+
+if(!list.length){
 
 grid.innerHTML =
 
 `
 <div style="
 grid-column:1/-1;
-text-align:center;
-padding:40px;
 background:white;
+padding:40px;
 border-radius:15px;
+text-align:center;
 ">
 
-<h3>No products found</h3>
+<h3>
+No products available yet.
+</h3>
 
 <p style="margin-top:8px;color:#667085;">
-Try another search.
+New products will appear here.
 </p>
 
 </div>
@@ -1339,49 +905,38 @@ return;
 
 
 grid.innerHTML =
-list.map((product,index)=>`
+
+list.map(product=>`
 
 <div class="product">
 
 <div class="product-image">
 
-${
-product.image
-
-?
-
-`<img
+<img
 src="${product.image}"
-alt="${product.name}"
->`
-
-:
-
-`<div class="emoji">
-${product.emoji || "📦"}
-</div>`
-
-}
+alt="${escapeHTML(product.name)}"
+loading="lazy"
+>
 
 </div>
 
 
 <div class="product-info">
 
-<span class="product-category">
-${product.category}
+<span class="category-tag">
+${escapeHTML(product.category)}
 </span>
 
 <h3>
-${product.name}
+${escapeHTML(product.name)}
 </h3>
 
 <div class="description">
-${product.description || ""}
+${escapeHTML(product.description || "")}
 </div>
 
 <div class="price">
-${product.price}
+₦${Number(product.price).toLocaleString()}
 </div>
 
 <button
@@ -1400,269 +955,50 @@ onclick="addToCart()"
 }
 
 
-/* DISPLAY ADMIN PRODUCTS */
-
-function renderAdminProducts(){
-
-const box =
-document.getElementById(
-"adminProducts"
-);
-
-if(products.length === 0){
-
-box.innerHTML =
-"<p>No products added yet.</p>";
-
-return;
-
-}
-
-
-box.innerHTML =
-products.map((product,index)=>`
-
-<div class="admin-product">
-
-${
-product.image
-
-?
-
-`<img
-src="${product.image}"
-alt="${product.name}"
->`
-
-:
-
-`<div style="
-height:120px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:55px;
-">
-${product.emoji || "📦"}
-</div>`
-
-}
-
-
-<div class="admin-product-info">
-
-<strong>
-${product.name}
-</strong>
-
-<br>
-
-<span style="color:#ffbf00;">
-${product.price}
-</span>
-
-<br>
-
-<small style="color:#9ca3af;">
-${product.category}
-</small>
-
-<button
-class="delete-btn"
-onclick="deleteProduct(${index})"
->
-Delete
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* ADD PRODUCT */
-
-document
-.getElementById("productForm")
-.addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-
-const name =
-document.getElementById(
-"productName"
-).value;
-
-const price =
-document.getElementById(
-"productPrice"
-).value;
-
-const category =
-document.getElementById(
-"productCategory"
-).value;
-
-const description =
-document.getElementById(
-"productDescription"
-).value;
-
-const file =
-document.getElementById(
-"productImage"
-).files[0];
-
-
-if(!file){
-
-alert(
-"Please select a product picture."
-);
-
-return;
-
-}
-
-
-const reader =
-new FileReader();
-
-
-reader.onload =
-function(e){
-
-const newProduct = {
-
-name:name,
-
-price:price,
-
-category:category,
-
-description:description,
-
-image:e.target.result,
-
-emoji:"📦"
-
-};
-
-
-products.unshift(
-newProduct
-);
-
-
-saveProducts();
-
-renderProducts();
-
-renderAdminProducts();
-
-
-document
-.getElementById("productForm")
-.reset();
-
-
-document
-.getElementById("imagePreview")
-.innerHTML =
-"Select a product picture above";
-
-
-toast(
-"⚡ Product added successfully!"
-);
-
-
-document
-.getElementById("products")
-.scrollIntoView({
-behavior:"smooth"
-});
-
-};
-
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* DELETE PRODUCT */
-
-function deleteProduct(index){
-
-if(
-confirm(
-"Are you sure you want to delete this product?"
-)
-){
-
-products.splice(
-index,
-1
-);
-
-saveProducts();
-
-renderProducts();
-
-renderAdminProducts();
-
-toast(
-"Product deleted."
-);
-
-}
-
-}
-
-
 /* SEARCH */
 
-function searchProducts(){
+window.searchProducts =
+function(){
 
-const query =
-document
-.getElementById("search")
-.value
-.toLowerCase()
-.trim();
+const search =
+document.getElementById(
+"search"
+).value.toLowerCase();
 
 
 const filtered =
-products.filter(product =>
+products.filter(product=>{
 
-(
-product.name +
-" " +
-product.category +
-" " +
-product.description
-)
+return (
+
+product.name.toLowerCase()
+.includes(search)
+
+||
+
+product.category.toLowerCase()
+.includes(search)
+
+||
+
+(product.description || "")
 .toLowerCase()
-.includes(query)
+.includes(search)
 
 );
+
+});
 
 
 renderProducts(filtered);
 
-}
+};
 
 
-/* CATEGORY FILTER */
+/* CATEGORY */
 
-function filterCategory(category){
+window.filterCategory =
+function(category){
 
 const filtered =
 products.filter(
@@ -1678,71 +1014,44 @@ document
 behavior:"smooth"
 });
 
-}
+};
 
 
 /* CART */
 
-function addToCart(){
+window.addToCart =
+function(){
 
 cart++;
 
-document
-.getElementById("cartCount")
-.textContent =
-cart;
+document.getElementById(
+"cartCount"
+).textContent = cart;
 
-toast(
+showToast(
 "🛒 Product added to cart!"
 );
 
-}
-
-
-/* CART BUTTON */
-
-function showCart(){
-
-if(cart === 0){
-
-toast(
-"Your cart is currently empty."
-);
-
-}else{
-
-toast(
-`You have ${cart} product(s) in your cart.`
-);
-
-}
-
-}
+};
 
 
 /* TOAST */
 
-function toast(message){
+function showToast(message){
 
-const toastBox =
+const toast =
 document.getElementById(
 "toast"
 );
 
-toastBox.textContent =
+toast.textContent =
 message;
 
-toastBox.classList.add(
-"show"
-);
+toast.classList.add("show");
 
 setTimeout(
-function(){
-
-toastBox.classList.remove(
-"show"
-);
-
+()=>{
+toast.classList.remove("show");
 },
 2000
 );
@@ -1750,11 +1059,18 @@ toastBox.classList.remove(
 }
 
 
-/* INITIAL LOAD */
+/* SECURITY */
 
-renderProducts();
+function escapeHTML(text){
 
-renderAdminProducts();
+return String(text)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
 
 </script>
 
