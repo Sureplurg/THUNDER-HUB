@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Thunder Hub | Your Everyday Marketplace</title>
+
+<meta name="description" content="Thunder Hub — shop different commodities in one powerful online marketplace.">
+
+<style>
+:root{
+  --gold:#ffbf00;
+  --dark:#080b12;
+  --dark2:#111827;
+  --white:#fff;
+  --muted:#aab2c0;
+  --card:#151c29;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#05070b,#172033);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 4px 20px #0003;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:.5px;
+  color:white;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.search{
+  flex:1;
+  display:flex;
+  background:white;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.search input{
+  border:0;
+  outline:0;
+  padding:13px 17px;
+  flex:1;
+  font-size:15px;
+}
+
+.search button{
+  border:0;
+  background:var(--gold);
+  padding:0 20px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.cart{
+  background:#202a3a;
+  border:1px solid #ffffff22;
+  color:white;
+  border-radius:12px;
+  padding:10px 14px;
+  cursor:pointer;
+}
+
+.cart b{
+  color:var(--gold);
+}
+
+/* HERO */
+.hero{
+  background:
+  radial-gradient(
+    circle at 80% 20%,
+    #4b3600 0,
+    #111827 35%,
+    #05070b 75%
+  );
+  color:white;
+  padding:65px 20px;
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:35px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  background:#ffbf001c;
+  border:1px solid #ffbf0066;
+  color:#ffd45c;
+  padding:8px 13px;
+  border-radius:30px;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:clamp(40px,6vw,72px);
+  line-height:.98;
+  margin-bottom:20px;
+}
+
+.hero p{
+  color:#c7ceda;
+  font-size:18px;
+  line-height:1.6;
+  max-width:650px;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:25px;
+  background:var(--gold);
+  color:#111;
+  text-decoration:none;
+  font-weight:800;
+  padding:14px 22px;
+  border-radius:12px;
+}
+
+.hero-box{
+  background:#ffffff0d;
+  border:1px solid #ffffff1c;
+  border-radius:25px;
+  padding:28px;
+  backdrop-filter:blur(8px);
+}
+
+.hero-box .bolt{
+  font-size:80px;
+  text-align:center;
+}
+
+.hero-box h2{
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.hero-box p{
+  text-align:center;
+  color:#bbc3d0;
+}
+
+/* GENERAL */
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.section-head h2{
+  font-size:28px;
+}
+
+.section-head p{
+  color:#667085;
+}
+
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+}
+
+.cat{
+  background:white;
+  border:1px solid #e7eaf0;
+  border-radius:15px;
+  padding:18px 10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.cat:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px #00000010;
+}
+
+.cat .ico{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.cat b{
+  font-size:13px;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.product{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #e7eaf0;
+  box-shadow:0 8px 25px #00000008;
+}
+
+.pic{
+  height:190px;
+  background:linear-gradient(135deg,#e9edf3,#fff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:75px;
+}
+
+.info{
+  padding:16px;
+}
+
+.tag{
+  font-size:11px;
+  color:#8a6500;
+  background:#fff5cf;
+  padding:5px 8px;
+  border-radius:20px;
+  display:inline-block;
+}
+
+.product h3{
+  font-size:16px;
+  margin:10px 0 7px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:900;
+}
+
+.buy{
+  margin-top:12px;
+  width:100%;
+  border:0;
+  background:#111827;
+  color:white;
+  padding:11px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.buy:hover{
+  background:#2a3445;
+}
+
+/* FEATURES */
+.features{
+  background:#0b0f17;
+  color:white;
+}
+
+.features .wrap{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.feature{
+  padding:25px 5px;
+}
+
+.feature div{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.feature p{
+  color:#aeb6c5;
+  margin-top:7px;
+  line-height:1.5;
+}
+
+/* FOOTER */
+footer{
+  background:#05070b;
+  color:#aeb6c5;
+  padding:35px 20px;
+}
+
+.foot{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+.foot strong{
+  color:white;
+  font-size:20px;
+}
+
+.phone{
+  color:var(--gold);
+  font-weight:bold;
+}
+
+/* TOAST */
+#toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:#111827;
+  color:white;
+  padding:14px 20px;
+  border-radius:12px;
+  transition:.3s;
+  z-index:100;
+}
+
+.show{
+  transform:translateX(-50%) translateY(0)!important;
+}
+
+/* TABLET */
+@media(max-width:900px){
+
+  .hero-inner{
+    grid-template-columns:1fr;
+  }
+
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* MOBILE */
+@media(max-width:560px){
+
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  .logo{
+    width:100%;
+  }
+
+  .search{
+    order:3;
+    width:100%;
+    flex-basis:100%;
+  }
+
+  .hero{
+    padding:45px 18px;
+  }
+
+  .wrap{
+    padding:28px 15px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+
+  .cat{
+    padding:13px 5px;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .pic{
+    height:145px;
+    font-size:55px;
+  }
+
+  .info{
+    padding:11px;
+  }
+
+  .product h3{
+    font-size:14px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+
+  .features .wrap{
+    grid-template-columns:1fr;
+  }
+
+  .hero-box{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+  <div class="nav">
+
+    <div class="logo">
+      ⚡ THUNDER <span>HUB</span>
+    </div>
+
+    <div class="search">
+
+      <input
+        id="search"
+        type="text"
+        placeholder="Search products..."
+      >
+
+      <button onclick="searchProducts()">
+        Search
+      </button>
+
+    </div>
+
+    <button class="cart" onclick="showCart()">
+      🛒 Cart <b id="count">0</b>
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div>
+
+      <span class="badge">
+        ⚡ ONE HUB. MANY PRODUCTS.
+      </span>
+
+      <h1>
+        Shop Smart.<br>
+        <span style="color:#ffbf00">
+          Shop Thunder.
+        </span>
+      </h1>
+
+      <p>
+        Welcome to Thunder Hub — your modern online marketplace
+        for different commodities, great deals and everyday
+        essentials, all in one place.
+      </p>
+
+      <a class="cta" href="#products">
+        Explore Products →
+      </a>
+
+    </div>
+
+
+    <div class="hero-box">
+
+      <div class="bolt">
+        ⚡
+      </div>
+
+      <h2>
+        Thunder Hub
+      </h2>
+
+      <p>
+        Powerful shopping. Simple ordering.
+        Direct customer support.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+<div class="wrap">
+
+  <div class="section-head">
+
+    <div>
+
+      <h2>
+        Shop by Category
+      </h2>
+
+      <p>
+        Find what you need faster.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="categories">
+
+    <div class="cat" onclick="filter('Electronics')">
+
+      <div class="ico">
+        📱
+      </div>
+
+      <b>
+        Electronics
+      </b>
+
+    </div>
+
+
+    <div class="cat" onclick="filter('Fashion')">
+
+      <div class="ico">
+        👕
+      </div>
+
+      <b>
+        Fashion
+      </b>
+
+    </div>
+
+
+    <div class="cat" onclick="filter('Home')">
+
+      <div class="ico">
+        🏠
+      </div>
+
+      <b>
+        Home
+      </b>
+
+    </div>
+
+
+    <div class="cat" onclick="filter('Beauty')">
+
+      <div class="ico">
+        💄
+      </div>
+
+      <b>
+        Beauty
+      </b>
+
+    </div>
+
+
+    <div class="cat" onclick="filter('Grocery')">
+
+      <div class="ico">
+        🛒
+      </div>
+
+      <b>
+        Grocery
+      </b>
+
+    </div>
+
+
+    <div class="cat" onclick="filter('Others')">
+
+      <div class="ico">
+        📦
+      </div>
+
+      <b>
+        Others
+      </b>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- PRODUCTS -->
+<section id="products" class="wrap">
+
+  <div class="section-head">
+
+    <div>
+
+      <h2>
+        Featured Products
+      </h2>
+
+      <p>
+        Quality products from Thunder Hub.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="products"
+    id="productGrid"
+  ></div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+  <div class="wrap">
+
+    <div class="feature">
+
+      <div>
+        🚚
+      </div>
+
+      <h3>
+        Easy Ordering
+      </h3>
+
+      <p>
+        Choose your products and contact
+        Thunder Hub directly to place your order.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div>
+        💬
+      </div>
+
+      <h3>
+        Direct Support
+      </h3>
+
+      <p>
+        Talk to us on WhatsApp or call for
+        product information and orders.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div>
+        🔒
+      </div>
+
+      <h3>
+        Trusted Shopping
+      </h3>
+
+      <p>
+        A clean, simple marketplace designed
+        to make shopping convenient.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="foot">
+
+    <div>
+
+      <strong>
+        ⚡ Thunder Hub
+      </strong>
+
+      <br><br>
+
+      Your everyday marketplace.
+
+    </div>
+
+
+    <div>
+
+      Customer Service
+
+      <br>
+
+      <span class="phone">
+        📞 08032744506
+      </span>
+
+    </div>
+
+
+    <div>
+
+      © 2026 Thunder Hub.
+      All rights reserved.
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- TOAST -->
+<div id="toast">
+  Added to cart
+</div>
+
+
+<script>
+
+const products = [
+
+  {
+    name:"Premium Smartphone",
+    price:"₦185,000",
+    cat:"Electronics",
+    icon:"📱"
+  },
+
+  {
+    name:"Wireless Headphones",
+    price:"₦35,000",
+    cat:"Electronics",
+    icon:"🎧"
+  },
+
+  {
+    name:"Classic Fashion Wear",
+    price:"₦28,000",
+    cat:"Fashion",
+    icon:"👕"
+  },
+
+  {
+    name:"Luxury Handbag",
+    price:"₦45,000",
+    cat:"Fashion",
+    icon:"👜"
+  },
+
+  {
+    name:"Home Essentials",
+    price:"₦22,000",
+    cat:"Home",
+    icon:"🏠"
+  },
+
+  {
+    name:"Beauty Care Set",
+    price:"₦18,500",
+    cat:"Beauty",
+    icon:"💄"
+  },
+
+  {
+    name:"Quality Food Items",
+    price:"₦15,000",
+    cat:"Grocery",
+    icon:"🛒"
+  },
+
+  {
+    name:"Everyday Commodity",
+    price:"₦12,000",
+    cat:"Others",
+    icon:"📦"
+  }
+
+];
+
+
+let cart = 0;
+
+
+/* DISPLAY PRODUCTS */
+
+function render(list = products){
+
+  document.getElementById("productGrid").innerHTML =
+
+    list.map((p,i)=>`
+
+      <div class="product">
+
+        <div class="pic">
+          ${p.icon}
+        </div>
+
+        <div class="info">
+
+          <span class="tag">
+            ${p.cat}
+          </span>
+
+          <h3>
+            ${p.name}
+          </h3>
+
+          <div class="price">
+            ${p.price}
+          </div>
+
+          <button
+            class="buy"
+            onclick="add(${i})"
+          >
+            Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* ADD TO CART */
+
+function add(i){
+
+  cart++;
+
+  document.getElementById("count").textContent = cart;
+
+  toast(
+    "Added to Thunder Hub cart ⚡"
+  );
+
+}
+
+
+/* TOAST MESSAGE */
+
+function toast(t){
+
+  let x =
+    document.getElementById("toast");
+
+  x.textContent = t;
+
+  x.classList.add("show");
+
+  setTimeout(
+    ()=>x.classList.remove("show"),
+    1800
+  );
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filter(cat){
+
+  render(
+    products.filter(
+      p => p.cat === cat
+    )
+  );
+
+  document
+    .getElementById("products")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+  let q =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  render(
+
+    products.filter(
+
+      p =>
+        (p.name + " " + p.cat)
+        .toLowerCase()
+        .includes(q)
+
+    )
+
+  );
+
+  document
+    .getElementById("products")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* CART */
+
+function showCart(){
+
+  if(cart){
+
+    toast(
+      `You have ${cart} item(s) in your cart.`
+    );
+
+  }else{
+
+    toast(
+      "Your cart is empty."
+    );
+
+  }
+
+}
+
+
+/* LOAD PRODUCTS */
+
+render();
+
+</script>
+
+</body>
+</html>
