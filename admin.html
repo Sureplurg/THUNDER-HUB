@@ -1,82 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Thunder Hub Admin</title>
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f6f8;color:#111827}
-header{background:#07090d;color:#fff;padding:18px}.bar{max-width:1000px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:22px;font-weight:900}.logo span{color:#ffbf00}.wrap{max-width:1000px;margin:auto;padding:20px 15px}
-.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 5px 20px #0001}
-input,select,textarea{width:100%;padding:13px;margin:6px 0 14px;border:1px solid #d0d5dd;border-radius:10px;font-size:15px}
-textarea{min-height:90px}.btn{border:0;border-radius:10px;padding:12px 15px;font-weight:800;cursor:pointer}
-.yellow{background:#ffbf00}.green{background:#25d366;color:white}.red{background:#ef4444;color:white}.dark{background:#111827;color:white}
-.msg{padding:10px;border-radius:10px;margin:10px 0}.ok{background:#dcfce7;color:#166534}.err{background:#fee2e2;color:#991b1b}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.item{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}.item img{width:100%;height:180px;object-fit:cover;background:#eee}.body{padding:12px}.actions{display:flex;gap:7px}.actions button{flex:1}
-.preview{max-width:180px;max-height:180px;display:none;border-radius:10px;margin:8px 0}
-@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:450px){.grid{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f4f6;color:#172033}header{background:#08090d;color:#fff;padding:18px 22px;font-size:26px;font-weight:800}header span{color:#ffbf00}.wrap{max-width:900px;margin:28px auto;padding:0 16px}.card{background:#fff;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 4px 18px #0001}h1,h2{margin-top:0}.hidden{display:none}.msg{padding:12px 14px;border-radius:10px;margin:12px 0}.error{background:#fee2e2;color:#991b1b}.ok{background:#dcfce7;color:#166534}label{display:block;font-weight:700;margin:14px 0 7px}input,textarea{width:100%;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}textarea{min-height:100px}button{border:0;border-radius:10px;padding:13px 18px;font-size:16px;font-weight:700;cursor:pointer}.primary{background:#ffbf00;color:#111}.dark{background:#111827;color:#fff}.danger{background:#dc2626;color:#fff}.secondary{background:#e5e7eb;color:#111827}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:180px}.preview{max-width:180px;max-height:180px;border-radius:12px;margin-top:12px;display:none}.product{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #eee;align-items:center}.product img{width:85px;height:85px;object-fit:cover;border-radius:10px}.product .info{flex:1}.price{font-weight:800;margin:5px 0}.small{font-size:13px;color:#667085}.actions{display:flex;gap:7px;flex-wrap:wrap}
 </style>
 </head>
 <body>
-<header><div class="bar"><div class="logo">⚡ THUNDER <span>HUB</span> ADMIN</div><button id="logout" class="btn red" style="display:none">Logout</button></div></header>
+<header>⚡ THUNDER <span>HUB</span> ADMIN</header>
 <div class="wrap">
-<div id="login" class="card">
-<h2>Admin Login</h2><p>Only your Firebase account should be used here.</p>
-<div id="loginMsg" class="msg" style="display:none"></div>
-<label>Email</label><input id="email" type="email" placeholder="Admin email">
-<label>Password</label><input id="pass" type="password" placeholder="Admin password">
-<button id="loginBtn" class="btn yellow" style="width:100%">🔐 Login</button>
-</div>
-<div id="dash" style="display:none">
+<section id="loginCard" class="card">
+<h1>Admin Login</h1><p>Only your Firebase admin account should be used here.</p>
+<div id="loginMsg"></div>
+<label>Email</label><input id="email" type="email" autocomplete="username" placeholder="Admin email">
+<label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password">
+<br><br><button class="primary" id="loginBtn">🔐 Login</button>
+</section>
+<section id="adminArea" class="hidden">
+<div class="card"><div class="row" style="align-items:center"><div><h1>Thunder Hub Products</h1><div class="small" id="signedIn"></div></div><div style="text-align:right"><button class="dark" id="logoutBtn">Logout</button></div></div></div>
 <div class="card">
-<h2 id="formTitle">Add Product</h2><div id="msg" class="msg" style="display:none"></div>
-<label>Product name</label><input id="name" placeholder="Samsung Galaxy A16">
-<label>Price (₦)</label><input id="price" type="number" min="0" placeholder="250000">
-<label>Category</label><select id="cat"><option>Electronics</option><option>Fashion</option><option>Home</option><option>Beauty</option><option>Grocery</option><option>Others</option></select>
-<label>Description</label><textarea id="desc" placeholder="Product description"></textarea>
-<label>Product picture</label><button id="upload" class="btn green">📸 Choose picture</button>
-<img id="preview" class="preview"><input id="image" type="hidden">
-<div id="uploadMsg" style="font-size:13px;color:#667085;margin:7px 0"></div>
-<button id="save" class="btn yellow">➕ Add Product</button><button id="cancel" class="btn dark" style="display:none">Cancel</button>
+<h2 id="formTitle">Add Product</h2><div id="productMsg"></div>
+<label>Product Name</label><input id="name" placeholder="e.g. Samsung Phone">
+<div class="row"><div><label>Price</label><input id="price" type="number" min="0" placeholder="0"></div><div><label>Category</label><input id="category" placeholder="Electronics"></div></div>
+<label>Description</label><textarea id="description" placeholder="Product details"></textarea>
+<label>Product Picture</label><button class="dark" id="uploadBtn">📷 Upload Picture</button><img id="preview" class="preview" alt="Preview"><input id="image" type="hidden">
+<br><br><div class="row"><button class="primary" id="saveBtn">➕ Add Product</button><button class="secondary hidden" id="cancelBtn">Cancel Edit</button></div>
 </div>
-<div class="card"><h2>Your Products</h2><div id="list" class="grid">Loading...</div></div>
-</div></div>
-<script src="https://upload-widget.cloudinary.com/latest/global/all.js"></script>
+<div class="card"><h2>Products</h2><div id="products">Loading products...</div></div>
+</section></div>
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import{getDatabase,ref,push,set,update,remove,onValue,get}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
-const firebaseConfig={
-apiKey:"AIzaSyCXL9pUlMuNySfV6PFeGa8BopcOHhlq0",
-authDomain:"thunder-hub-ab0c4.firebaseapp.com",
-databaseURL:"https://thunder-hub-ab0c4-default-rtdb.firebaseio.com",
-projectId:"thunder-hub-ab0c4",
-storageBucket:"thunder-hub-ab0c4.firebasestorage.app",
-messagingSenderId:"103451755117",
-appId:"1:103451755117:web:bc179aa67863e9756e3564",
-measurementId:"G-YB0BVJSKCP"};
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getDatabase,ref,push,set,onValue,remove}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+const firebaseConfig={apiKey:"AIzaSyCXL9pUlMuNySfV6PFeGa8BopcOHhlq0",authDomain:"thunder-hub-ab0c4.firebaseapp.com",projectId:"thunder-hub-ab0c4",storageBucket:"thunder-hub-ab0c4.firebasestorage.app",messagingSenderId:"103451755117",appId:"1:103451755117:web:bc179aa67863e9756e3564",measurementId:"G-YB0BVJSKCP"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app);
-const CLOUD_NAME="hfmbIsed",UPLOAD_PRESET="Thunder_hub";
-let editId=null,widget=null;
-const $=x=>document.getElementById(x);
-function msg(el,text,ok=false){el.textContent=text;el.style.display="block";el.className="msg "+(ok?"ok":"err")}
-onAuthStateChanged(auth,u=>{$("login").style.display=u?"none":"block";$("dash").style.display=u?"block":"none";$("logout").style.display=u?"block":"none";if(u)load()});
-$("loginBtn").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("pass").value);$("loginMsg").style.display="none"}catch(e){msg($("loginMsg"),"Login failed. Check your email and password.")}};
-$("logout").onclick=()=>signOut(auth);
-$("upload").onclick=()=>{
-if(!widget)widget=cloudinary.createUploadWidget({cloudName:CLOUD_NAME,uploadPreset:UPLOAD_PRESET,sources:["local","camera"],multiple:false,resourceType:"image",clientAllowedFormats:["jpg","jpeg","png","webp"],maxFileSize:10000000},(err,res)=>{
-if(err){msg($("msg"),"Picture upload failed.");return}
-if(res&&res.event==="success"){$("image").value=res.info.secure_url;$("preview").src=res.info.secure_url;$("preview").style.display="block";$("uploadMsg").textContent="Picture uploaded successfully."}});
-widget.open()};
-$("save").onclick=async()=>{
-const name=$("name").value.trim(),price=Number($("price").value),category=$("cat").value,description=$("desc").value.trim(),image=$("image").value;
-if(!name||!price||!image){msg($("msg"),"Enter name, price and upload a picture.");return}
-try{const data={name,price,category,description,image,updatedAt:Date.now()};if(editId)await update(ref(db,"products/"+editId),data);else{const r=push(ref(db,"products"));await set(r,{...data,createdAt:Date.now()})}msg($("msg"),editId?"Product updated.":"Product added.",true);clearForm()}catch(e){msg($("msg"),"Could not save product: "+e.message)}};
-$("cancel").onclick=clearForm;
-function clearForm(){editId=null;$("formTitle").textContent="Add Product";$("save").textContent="➕ Add Product";$("cancel").style.display="none";["name","price","desc","image"].forEach(x=>$(x).value="");$("preview").style.display="none";$("uploadMsg").textContent=""}
-function load(){onValue(ref(db,"products"),snap=>{const d=snap.val()||{},arr=Object.entries(d).map(([id,p])=>({id,...p}));$("list").innerHTML=arr.length?arr.map(p=>`<div class="item"><img src="${esc(p.image)}"><div class="body"><b>${esc(p.name)}</b><div style="font-size:18px;font-weight:900;margin:7px 0">₦${Number(p.price||0).toLocaleString()}</div><small>${esc(p.category||"Others")}</small><div class="actions" style="margin-top:10px"><button class="btn dark" onclick="editP('${p.id}')">✏️ Edit</button><button class="btn red" onclick="delP('${p.id}')">🗑️ Delete</button></div></div></div>`).join(""):"<p>No products yet.</p>"})}
-window.editP=async id=>{const s=await get(ref(db,"products/"+id)),p=s.val();if(!p)return;editId=id;$("formTitle").textContent="Edit Product";$("save").textContent="💾 Update Product";$("cancel").style.display="inline-block";$("name").value=p.name||"";$("price").value=p.price||"";$("cat").value=p.category||"Others";$("desc").value=p.description||"";$("image").value=p.image||"";$("preview").src=p.image||"";$("preview").style.display=p.image?"block":"none";scrollTo(0,0)}
-window.delP=async id=>{if(confirm("Delete this product?"))try{await remove(ref(db,"products/"+id));msg($("msg"),"Product deleted.",true)}catch(e){msg($("msg"),"Delete failed.")}}
-function esc(x){return String(x||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+const CLOUD_NAME="hfmbIsed",UPLOAD_PRESET="Thunder_hub";const $=id=>document.getElementById(id);let editingId=null,productsCache={};
+function show(e,y=true){e.classList.toggle("hidden",!y)}function msg(e,t,type="error"){e.innerHTML=t?`<div class="msg ${type}">${t}</div>`:""}
+$("loginBtn").onclick=async()=>{msg($("loginMsg"),"");let email=$("email").value.trim(),password=$("password").value;if(!email||!password){msg($("loginMsg"),"Enter your email and password.");return}$("loginBtn").disabled=true;try{await signInWithEmailAndPassword(auth,email,password)}catch(e){console.error(e);msg($("loginMsg"),"Login failed: "+(e.code||"Please check your email and password."))}finally{$("loginBtn").disabled=false}};
+$("logoutBtn").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,user=>{if(user){show($("loginCard"),false);show($("adminArea"),true);$("signedIn").textContent="Signed in as "+user.email}else{show($("loginCard"),true);show($("adminArea"),false)}});
+$("uploadBtn").onclick=()=>{cloudinary.createUploadWidget({cloudName:CLOUD_NAME,uploadPreset:UPLOAD_PRESET,sources:["local","camera"],multiple:false,maxFileSize:10000000,clientAllowedFormats:["jpg","jpeg","png","webp"]},(error,result)=>{if(error){console.error(error);msg($("productMsg"),"Image upload failed.");return}if(result&&result.event==="success"){$("image").value=result.info.secure_url;$("preview").src=result.info.secure_url;$("preview").style.display="block";msg($("productMsg"),"Picture uploaded successfully.","ok")}}).open()};
+$("saveBtn").onclick=async()=>{msg($("productMsg"),"");let data={name:$("name").value.trim(),price:Number($("price").value||0),category:$("category").value.trim(),description:$("description").value.trim(),image:$("image").value.trim(),updatedAt:Date.now()};if(!data.name){msg($("productMsg"),"Enter the product name.");return}if(!data.image){msg($("productMsg"),"Upload a product picture first.");return}try{if(editingId){await set(ref(db,"products/"+editingId),{...data,createdAt:productsCache[editingId]?.createdAt||Date.now()});msg($("productMsg"),"Product updated successfully.","ok")}else{let r=push(ref(db,"products"));await set(r,{...data,createdAt:Date.now()});msg($("productMsg"),"Product added successfully.","ok")}resetForm()}catch(e){console.error(e);msg($("productMsg"),"Could not save product: "+e.message)}};
+$("cancelBtn").onclick=resetForm;
+function resetForm(){editingId=null;$("formTitle").textContent="Add Product";$("saveBtn").textContent="➕ Add Product";show($("cancelBtn"),false);$("name").value="";$("price").value="";$("category").value="";$("description").value="";$("image").value="";$("preview").src="";$("preview").style.display="none"}
+function editProduct(id){let p=productsCache[id];if(!p)return;editingId=id;$("formTitle").textContent="Edit Product";$("saveBtn").textContent="💾 Save Changes";show($("cancelBtn"),true);$("name").value=p.name||"";$("price").value=p.price||"";$("category").value=p.category||"";$("description").value=p.description||"";$("image").value=p.image||"";if(p.image){$("preview").src=p.image;$("preview").style.display="block"}scrollTo({top:0,behavior:"smooth"})}
+async function deleteProduct(id){if(!confirm("Delete this product?"))return;try{await remove(ref(db,"products/"+id))}catch(e){alert("Could not delete product: "+e.message)}}
+window.editProduct=editProduct;window.deleteProduct=deleteProduct;
+onValue(ref(db,"products"),snap=>{productsCache=snap.val()||{};let entries=Object.entries(productsCache).reverse();if(!entries.length){$("products").innerHTML="<p>No products yet.</p>";return}$("products").innerHTML=entries.map(([id,p])=>`<div class="product"><img src="${esc(p.image||"")}" alt=""><div class="info"><strong>${esc(p.name||"Unnamed")}</strong><div class="price">₦${Number(p.price||0).toLocaleString()}</div><div class="small">${esc(p.category||"")}</div></div><div class="actions"><button class="secondary" onclick="editProduct('${id}')">Edit</button><button class="danger" onclick="deleteProduct('${id}')">Delete</button></div></div>`).join("")});
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
 </script></body></html>
