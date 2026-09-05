@@ -2,53 +2,1292 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Thunder Hub Admin</title>
+
 <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f4f6;color:#172033}header{background:#08090d;color:#fff;padding:18px 22px;font-size:26px;font-weight:800}header span{color:#ffbf00}.wrap{max-width:900px;margin:28px auto;padding:0 16px}.card{background:#fff;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 4px 18px #0001}h1,h2{margin-top:0}.hidden{display:none}.msg{padding:12px 14px;border-radius:10px;margin:12px 0}.error{background:#fee2e2;color:#991b1b}.ok{background:#dcfce7;color:#166534}label{display:block;font-weight:700;margin:14px 0 7px}input,textarea{width:100%;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}textarea{min-height:100px}button{border:0;border-radius:10px;padding:13px 18px;font-size:16px;font-weight:700;cursor:pointer}.primary{background:#ffbf00;color:#111}.dark{background:#111827;color:#fff}.danger{background:#dc2626;color:#fff}.secondary{background:#e5e7eb;color:#111827}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:180px}.preview{max-width:180px;max-height:180px;border-radius:12px;margin-top:12px;display:none}.product{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #eee;align-items:center}.product img{width:85px;height:85px;object-fit:cover;border-radius:10px}.product .info{flex:1}.price{font-weight:800;margin:5px 0}.small{font-size:13px;color:#667085}.actions{display:flex;gap:7px;flex-wrap:wrap}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  color:#172033;
+}
+
+header{
+  background:#08090d;
+  color:white;
+  padding:18px 20px;
+  font-size:26px;
+  font-weight:800;
+}
+
+header span{
+  color:#ffbf00;
+}
+
+.wrap{
+  max-width:900px;
+  margin:25px auto;
+  padding:0 15px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:20px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+h1,h2{
+  margin-top:0;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin:15px 0 7px;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+}
+
+.primary{
+  background:#ffbf00;
+  color:#111;
+}
+
+.dark{
+  background:#111827;
+  color:white;
+}
+
+.danger{
+  background:#dc2626;
+  color:white;
+}
+
+.secondary{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.msg{
+  padding:13px;
+  border-radius:10px;
+  margin:12px 0;
+  word-break:break-word;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.ok{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.row > *{
+  flex:1;
+  min-width:180px;
+}
+
+.preview{
+  max-width:180px;
+  max-height:180px;
+  border-radius:12px;
+  margin-top:12px;
+  display:none;
+}
+
+.product{
+  display:flex;
+  gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+  align-items:center;
+}
+
+.product img{
+  width:85px;
+  height:85px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#eee;
+}
+
+.product .info{
+  flex:1;
+}
+
+.price{
+  font-weight:800;
+  margin:5px 0;
+}
+
+.small{
+  font-size:13px;
+  color:#667085;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+@media(max-width:600px){
+
+  header{
+    font-size:22px;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .product{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+
+  .product .info{
+    min-width:calc(100% - 105px);
+  }
+
+  .actions{
+    width:100%;
+  }
+
+  .actions button{
+    flex:1;
+  }
+}
 </style>
 </head>
+
 <body>
-<header>⚡ THUNDER <span>HUB</span> ADMIN</header>
+
+<header>
+⚡ THUNDER <span>HUB</span> ADMIN
+</header>
+
 <div class="wrap">
+
+<!-- LOGIN -->
 <section id="loginCard" class="card">
-<h1>Admin Login</h1><p>Only your Firebase admin account should be used here.</p>
+
+<h1>Admin Login</h1>
+
+<p>Only your Firebase admin account should be used here.</p>
+
 <div id="loginMsg"></div>
-<label>Email</label><input id="email" type="email" autocomplete="username" placeholder="Admin email">
-<label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password">
-<br><br><button class="primary" id="loginBtn">🔐 Login</button>
+
+<label>Email</label>
+
+<input
+  id="email"
+  type="email"
+  autocomplete="username"
+  placeholder="Admin email"
+>
+
+<label>Password</label>
+
+<input
+  id="password"
+  type="password"
+  autocomplete="current-password"
+  placeholder="Password"
+>
+
+<br><br>
+
+<button
+  class="primary"
+  id="loginBtn"
+>
+🔐 Login
+</button>
+
 </section>
+
+
+<!-- ADMIN AREA -->
 <section id="adminArea" class="hidden">
-<div class="card"><div class="row" style="align-items:center"><div><h1>Thunder Hub Products</h1><div class="small" id="signedIn"></div></div><div style="text-align:right"><button class="dark" id="logoutBtn">Logout</button></div></div></div>
+
 <div class="card">
-<h2 id="formTitle">Add Product</h2><div id="productMsg"></div>
-<label>Product Name</label><input id="name" placeholder="e.g. Samsung Phone">
-<div class="row"><div><label>Price</label><input id="price" type="number" min="0" placeholder="0"></div><div><label>Category</label><input id="category" placeholder="Electronics"></div></div>
-<label>Description</label><textarea id="description" placeholder="Product details"></textarea>
-<label>Product Picture</label><button class="dark" id="uploadBtn">📷 Upload Picture</button><img id="preview" class="preview" alt="Preview"><input id="image" type="hidden">
-<br><br><div class="row"><button class="primary" id="saveBtn">➕ Add Product</button><button class="secondary hidden" id="cancelBtn">Cancel Edit</button></div>
+
+<div class="row" style="align-items:center">
+
+<div>
+
+<h1>Thunder Hub Products</h1>
+
+<div
+  class="small"
+  id="signedIn"
+></div>
+
 </div>
-<div class="card"><h2>Products</h2><div id="products">Loading products...</div></div>
-</section></div>
+
+<div style="text-align:right">
+
+<button
+  class="dark"
+  id="logoutBtn"
+>
+Logout
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ADD PRODUCT -->
+<div class="card">
+
+<h2 id="formTitle">
+Add Product
+</h2>
+
+<div id="productMsg"></div>
+
+<label>
+Product Name
+</label>
+
+<input
+  id="name"
+  placeholder="e.g. Samsung Phone"
+>
+
+
+<div class="row">
+
+<div>
+
+<label>
+Price
+</label>
+
+<input
+  id="price"
+  type="number"
+  min="0"
+  placeholder="0"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Category
+</label>
+
+<input
+  id="category"
+  placeholder="Electronics"
+>
+
+</div>
+
+</div>
+
+
+<label>
+Description
+</label>
+
+<textarea
+  id="description"
+  placeholder="Product details"
+></textarea>
+
+
+<label>
+Product Picture
+</label>
+
+<button
+  class="dark"
+  id="uploadBtn"
+>
+📷 Upload Picture
+</button>
+
+
+<img
+  id="preview"
+  class="preview"
+  alt="Product preview"
+>
+
+
+<input
+  id="image"
+  type="hidden"
+>
+
+
+<br><br>
+
+
+<div class="row">
+
+<button
+  class="primary"
+  id="saveBtn"
+>
+➕ Add Product
+</button>
+
+
+<button
+  class="secondary hidden"
+  id="cancelBtn"
+>
+Cancel Edit
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCTS -->
+<div class="card">
+
+<h2>
+Products
+</h2>
+
+<div id="products">
+Loading products...
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import{getDatabase,ref,push,set,onValue,remove}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-const firebaseConfig={apiKey:"AIzaSyCXL9pUlMuNySfV6PFeGa8BopcOHhlq0",authDomain:"thunder-hub-ab0c4.firebaseapp.com",projectId:"thunder-hub-ab0c4",storageBucket:"thunder-hub-ab0c4.firebasestorage.app",messagingSenderId:"103451755117",appId:"1:103451755117:web:bc179aa67863e9756e3564",measurementId:"G-YB0BVJSKCP"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app);
-const CLOUD_NAME="hfmbIsed",UPLOAD_PRESET="Thunder_hub";const $=id=>document.getElementById(id);let editingId=null,productsCache={};
-function show(e,y=true){e.classList.toggle("hidden",!y)}function msg(e,t,type="error"){e.innerHTML=t?`<div class="msg ${type}">${t}</div>`:""}
-$("loginBtn").onclick=async()=>{msg($("loginMsg"),"");let email=$("email").value.trim(),password=$("password").value;if(!email||!password){msg($("loginMsg"),"Enter your email and password.");return}$("loginBtn").disabled=true;try{await signInWithEmailAndPassword(auth,email,password)}catch(e){console.error(e);msg($("loginMsg"),"Login failed: "+(e.code||"Please check your email and password."))}finally{$("loginBtn").disabled=false}};
-$("logoutBtn").onclick=()=>signOut(auth);
-onAuthStateChanged(auth,user=>{if(user){show($("loginCard"),false);show($("adminArea"),true);$("signedIn").textContent="Signed in as "+user.email}else{show($("loginCard"),true);show($("adminArea"),false)}});
-$("uploadBtn").onclick=()=>{cloudinary.createUploadWidget({cloudName:CLOUD_NAME,uploadPreset:UPLOAD_PRESET,sources:["local","camera"],multiple:false,maxFileSize:10000000,clientAllowedFormats:["jpg","jpeg","png","webp"]},(error,result)=>{if(error){console.error(error);msg($("productMsg"),"Image upload failed.");return}if(result&&result.event==="success"){$("image").value=result.info.secure_url;$("preview").src=result.info.secure_url;$("preview").style.display="block";msg($("productMsg"),"Picture uploaded successfully.","ok")}}).open()};
-$("saveBtn").onclick=async()=>{msg($("productMsg"),"");let data={name:$("name").value.trim(),price:Number($("price").value||0),category:$("category").value.trim(),description:$("description").value.trim(),image:$("image").value.trim(),updatedAt:Date.now()};if(!data.name){msg($("productMsg"),"Enter the product name.");return}if(!data.image){msg($("productMsg"),"Upload a product picture first.");return}try{if(editingId){await set(ref(db,"products/"+editingId),{...data,createdAt:productsCache[editingId]?.createdAt||Date.now()});msg($("productMsg"),"Product updated successfully.","ok")}else{let r=push(ref(db,"products"));await set(r,{...data,createdAt:Date.now()});msg($("productMsg"),"Product added successfully.","ok")}resetForm()}catch(e){console.error(e);msg($("productMsg"),"Could not save product: "+e.message)}};
-$("cancelBtn").onclick=resetForm;
-function resetForm(){editingId=null;$("formTitle").textContent="Add Product";$("saveBtn").textContent="➕ Add Product";show($("cancelBtn"),false);$("name").value="";$("price").value="";$("category").value="";$("description").value="";$("image").value="";$("preview").src="";$("preview").style.display="none"}
-function editProduct(id){let p=productsCache[id];if(!p)return;editingId=id;$("formTitle").textContent="Edit Product";$("saveBtn").textContent="💾 Save Changes";show($("cancelBtn"),true);$("name").value=p.name||"";$("price").value=p.price||"";$("category").value=p.category||"";$("description").value=p.description||"";$("image").value=p.image||"";if(p.image){$("preview").src=p.image;$("preview").style.display="block"}scrollTo({top:0,behavior:"smooth"})}
-async function deleteProduct(id){if(!confirm("Delete this product?"))return;try{await remove(ref(db,"products/"+id))}catch(e){alert("Could not delete product: "+e.message)}}
-window.editProduct=editProduct;window.deleteProduct=deleteProduct;
-onValue(ref(db,"products"),snap=>{productsCache=snap.val()||{};let entries=Object.entries(productsCache).reverse();if(!entries.length){$("products").innerHTML="<p>No products yet.</p>";return}$("products").innerHTML=entries.map(([id,p])=>`<div class="product"><img src="${esc(p.image||"")}" alt=""><div class="info"><strong>${esc(p.name||"Unnamed")}</strong><div class="price">₦${Number(p.price||0).toLocaleString()}</div><div class="small">${esc(p.category||"")}</div></div><div class="actions"><button class="secondary" onclick="editProduct('${id}')">Edit</button><button class="danger" onclick="deleteProduct('${id}')">Delete</button></div></div>`).join("")});
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
-</script></body></html>
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+  getDatabase,
+  ref,
+  push,
+  set,
+  onValue,
+  remove
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+
+/* =====================================================
+   YOUR THUNDER HUB FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyCXL9pUlSrMuNySfV6PFeGa8BopcOHhlq0",
+
+  authDomain:
+    "thunder-hub-ab0c4.firebaseapp.com",
+
+  databaseURL:
+    "https://thunder-hub-ab0c4-default-rtdb.firebaseio.com",
+
+  projectId:
+    "thunder-hub-ab0c4",
+
+  storageBucket:
+    "thunder-hub-ab0c4.firebasestorage.app",
+
+  messagingSenderId:
+    "103451755117",
+
+  appId:
+    "1:103451755117:web:bc179aa67863e9756e3564",
+
+  measurementId:
+    "G-YB0BVJSKCP"
+};
+
+
+/* START FIREBASE */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getDatabase(app);
+
+
+/* =====================================================
+   CLOUDINARY
+===================================================== */
+
+const CLOUD_NAME = "hfmbIsed";
+
+const UPLOAD_PRESET = "Thunder_hub";
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+const $ = id => document.getElementById(id);
+
+let editingId = null;
+
+let productsCache = {};
+
+
+/* =====================================================
+   MESSAGE FUNCTION
+===================================================== */
+
+function showMessage(element, text, type="error") {
+
+  if (!text) {
+
+    element.innerHTML = "";
+
+    return;
+  }
+
+  element.innerHTML =
+    `<div class="msg ${type}">${escapeHTML(text)}</div>`;
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+$("loginBtn").addEventListener("click", async () => {
+
+  const email =
+    $("email").value.trim();
+
+  const password =
+    $("password").value;
+
+
+  showMessage(
+    $("loginMsg"),
+    ""
+  );
+
+
+  if (!email || !password) {
+
+    showMessage(
+      $("loginMsg"),
+      "Enter your email and password."
+    );
+
+    return;
+  }
+
+
+  $("loginBtn").disabled = true;
+
+  $("loginBtn").textContent = "Logging in...";
+
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  } catch(error) {
+
+    console.error(
+      "Firebase login error:",
+      error
+    );
+
+
+    let message =
+      "Login failed.";
+
+
+    if (
+      error.code ===
+      "auth/invalid-credential"
+    ) {
+
+      message =
+        "Invalid email or password.";
+
+    } else if (
+      error.code ===
+      "auth/invalid-api-key"
+    ) {
+
+      message =
+        "Firebase API key is invalid. Check the Firebase Web App configuration.";
+
+    } else if (
+      error.code ===
+      "auth/api-key-not-valid"
+    ) {
+
+      message =
+        "Firebase API key is not valid. Please check the Web App API key in Firebase Project Settings.";
+
+    } else if (
+      error.code ===
+      "auth/user-not-found"
+    ) {
+
+      message =
+        "This admin email does not exist in Firebase Authentication.";
+
+    } else if (
+      error.code ===
+      "auth/wrong-password"
+    ) {
+
+      message =
+        "The password is incorrect.";
+
+    } else if (
+      error.code ===
+      "auth/too-many-requests"
+    ) {
+
+      message =
+        "Too many login attempts. Please wait and try again.";
+
+    } else {
+
+      message =
+        error.code || error.message;
+    }
+
+
+    showMessage(
+      $("loginMsg"),
+      message
+    );
+
+  } finally {
+
+    $("loginBtn").disabled = false;
+
+    $("loginBtn").textContent = "🔐 Login";
+
+  }
+
+});
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(auth, user => {
+
+  if (user) {
+
+    $("loginCard")
+      .classList
+      .add("hidden");
+
+
+    $("adminArea")
+      .classList
+      .remove("hidden");
+
+
+    $("signedIn").textContent =
+      "Signed in as " + user.email;
+
+  } else {
+
+    $("loginCard")
+      .classList
+      .remove("hidden");
+
+
+    $("adminArea")
+      .classList
+      .add("hidden");
+
+  }
+
+});
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+$("logoutBtn").addEventListener(
+  "click",
+  async () => {
+
+    await signOut(auth);
+
+  }
+);
+
+
+/* =====================================================
+   CLOUDINARY IMAGE UPLOAD
+===================================================== */
+
+$("uploadBtn").addEventListener(
+  "click",
+  () => {
+
+    if (
+      typeof cloudinary ===
+      "undefined"
+    ) {
+
+      showMessage(
+        $("productMsg"),
+        "Cloudinary could not load. Check your internet connection."
+      );
+
+      return;
+    }
+
+
+    cloudinary.createUploadWidget(
+
+      {
+
+        cloudName:
+          CLOUD_NAME,
+
+        uploadPreset:
+          UPLOAD_PRESET,
+
+        sources:
+          ["local", "camera"],
+
+        multiple:
+          false,
+
+        maxFileSize:
+          10000000,
+
+        clientAllowedFormats:
+          [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp"
+          ]
+
+      },
+
+      (error, result) => {
+
+        if (error) {
+
+          console.error(
+            "Cloudinary error:",
+            error
+          );
+
+
+          showMessage(
+            $("productMsg"),
+            "Image upload failed."
+          );
+
+          return;
+        }
+
+
+        if (
+          result &&
+          result.event ===
+          "success"
+        ) {
+
+          const url =
+            result.info.secure_url;
+
+
+          $("image").value =
+            url;
+
+
+          $("preview").src =
+            url;
+
+
+          $("preview").style.display =
+            "block";
+
+
+          showMessage(
+            $("productMsg"),
+            "Picture uploaded successfully.",
+            "ok"
+          );
+
+        }
+
+      }
+
+    ).open();
+
+  }
+);
+
+
+/* =====================================================
+   SAVE PRODUCT
+===================================================== */
+
+$("saveBtn").addEventListener(
+  "click",
+  async () => {
+
+    showMessage(
+      $("productMsg"),
+      ""
+    );
+
+
+    const data = {
+
+      name:
+        $("name").value.trim(),
+
+      price:
+        Number(
+          $("price").value || 0
+        ),
+
+      category:
+        $("category").value.trim(),
+
+      description:
+        $("description").value.trim(),
+
+      image:
+        $("image").value.trim(),
+
+      updatedAt:
+        Date.now()
+
+    };
+
+
+    if (!data.name) {
+
+      showMessage(
+        $("productMsg"),
+        "Enter the product name."
+      );
+
+      return;
+    }
+
+
+    if (!data.image) {
+
+      showMessage(
+        $("productMsg"),
+        "Upload a product picture first."
+      );
+
+      return;
+    }
+
+
+    $("saveBtn").disabled = true;
+
+
+    try {
+
+      if (editingId) {
+
+        await set(
+
+          ref(
+            db,
+            "products/" +
+            editingId
+          ),
+
+          {
+
+            ...data,
+
+            createdAt:
+              productsCache[
+                editingId
+              ]?.createdAt ||
+              Date.now()
+
+          }
+
+        );
+
+
+        showMessage(
+          $("productMsg"),
+          "Product updated successfully.",
+          "ok"
+        );
+
+
+      } else {
+
+        const newProduct =
+          push(
+            ref(
+              db,
+              "products"
+            )
+          );
+
+
+        await set(
+
+          newProduct,
+
+          {
+
+            ...data,
+
+            createdAt:
+              Date.now()
+
+          }
+
+        );
+
+
+        showMessage(
+          $("productMsg"),
+          "Product added successfully.",
+          "ok"
+        );
+
+      }
+
+
+      resetForm();
+
+
+    } catch(error) {
+
+      console.error(
+        "Database error:",
+        error
+      );
+
+
+      showMessage(
+        $("productMsg"),
+        "Could not save product: " +
+        error.message
+      );
+
+    } finally {
+
+      $("saveBtn").disabled =
+        false;
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   RESET FORM
+===================================================== */
+
+function resetForm() {
+
+  editingId = null;
+
+
+  $("formTitle").textContent =
+    "Add Product";
+
+
+  $("saveBtn").textContent =
+    "➕ Add Product";
+
+
+  $("cancelBtn")
+    .classList
+    .add("hidden");
+
+
+  $("name").value =
+    "";
+
+  $("price").value =
+    "";
+
+  $("category").value =
+    "";
+
+  $("description").value =
+    "";
+
+  $("image").value =
+    "";
+
+
+  $("preview").src =
+    "";
+
+  $("preview").style.display =
+    "none";
+
+}
+
+
+/* =====================================================
+   EDIT PRODUCT
+===================================================== */
+
+function editProduct(id) {
+
+  const product =
+    productsCache[id];
+
+
+  if (!product) return;
+
+
+  editingId =
+    id;
+
+
+  $("formTitle").textContent =
+    "Edit Product";
+
+
+  $("saveBtn").textContent =
+    "💾 Save Changes";
+
+
+  $("cancelBtn")
+    .classList
+    .remove("hidden");
+
+
+  $("name").value =
+    product.name || "";
+
+
+  $("price").value =
+    product.price || "";
+
+
+  $("category").value =
+    product.category || "";
+
+
+  $("description").value =
+    product.description || "";
+
+
+  $("image").value =
+    product.image || "";
+
+
+  if (product.image) {
+
+    $("preview").src =
+      product.image;
+
+    $("preview").style.display =
+      "block";
+
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+async function deleteProduct(id) {
+
+  if (
+    !confirm(
+      "Delete this product?"
+    )
+  ) {
+
+    return;
+  }
+
+
+  try {
+
+    await remove(
+      ref(
+        db,
+        "products/" + id
+      )
+    );
+
+  } catch(error) {
+
+    alert(
+      "Could not delete product: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   MAKE FUNCTIONS AVAILABLE
+===================================================== */
+
+window.editProduct =
+  editProduct;
+
+window.deleteProduct =
+  deleteProduct;
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+onValue(
+
+  ref(
+    db,
+    "products"
+  ),
+
+  snapshot => {
+
+    productsCache =
+      snapshot.val() || {};
+
+
+    const entries =
+      Object.entries(
+        productsCache
+      ).reverse();
+
+
+    if (!entries.length) {
+
+      $("products").innerHTML =
+        "<p>No products yet.</p>";
+
+      return;
+    }
+
+
+    $("products").innerHTML =
+      entries.map(
+        ([id, product]) => {
+
+          return `
+
+          <div class="product">
+
+            <img
+              src="${escapeHTML(product.image || "")}"
+              alt=""
+            >
+
+            <div class="info">
+
+              <strong>
+                ${escapeHTML(
+                  product.name ||
+                  "Unnamed"
+                )}
+              </strong>
+
+              <div class="price">
+                ₦${Number(
+                  product.price || 0
+                ).toLocaleString()}
+              </div>
+
+              <div class="small">
+                ${escapeHTML(
+                  product.category ||
+                  ""
+                )}
+              </div>
+
+            </div>
+
+            <div class="actions">
+
+              <button
+                class="secondary"
+                onclick="editProduct('${id}')"
+              >
+                Edit
+              </button>
+
+              <button
+                class="danger"
+                onclick="deleteProduct('${id}')"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+          `;
+
+        }
+      ).join("");
+
+  },
+
+  error => {
+
+    console.error(
+      "Database read error:",
+      error
+    );
+
+
+    $("products").innerHTML =
+      `<div class="msg error">
+        Could not load products:
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+);
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(
+      /[&<>"']/g,
+      character => ({
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      }[character])
+    );
+
+}
+
+
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
+
+$("cancelBtn").addEventListener(
+  "click",
+  resetForm
+);
+
+</script>
+
+</body>
+</html>
