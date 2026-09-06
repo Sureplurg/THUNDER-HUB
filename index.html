@@ -1,94 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thunder Hub Admin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thunder Hub</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f6f8;color:#111827}
-header{background:#07090d;color:#fff;padding:18px}.bar{max-width:1000px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:22px;font-weight:900}.logo span{color:#ffbf00}.wrap{max-width:1000px;margin:auto;padding:20px 15px}
-.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 5px 20px #0001}
-input,select,textarea{width:100%;padding:13px;margin:6px 0 14px;border:1px solid #d0d5dd;border-radius:10px;font-size:15px}
-textarea{min-height:90px}.btn{border:0;border-radius:10px;padding:12px 15px;font-weight:800;cursor:pointer}
-.yellow{background:#ffbf00}.green{background:#25d366;color:white}.red{background:#ef4444;color:white}.dark{background:#111827;color:white}
-.msg{padding:10px;border-radius:10px;margin:10px 0}.ok{background:#dcfce7;color:#166534}.err{background:#fee2e2;color:#991b1b}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.item{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}.item img{width:100%;height:180px;object-fit:cover;background:#eee}.body{padding:12px}.actions{display:flex;gap:7px}.actions button{flex:1}
-.preview{max-width:180px;max-height:180px;display:none;border-radius:10px;margin:8px 0}
-@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:450px){.grid{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f5f5;color:#222}
+header{background:#111;color:#d4af37;text-align:center;padding:20px}
+header h1{margin:0} header p{color:white;margin:5px 0}
+.hero{background:#222;color:white;text-align:center;padding:35px 15px}
+.hero h2{color:#d4af37;margin:0 0 10px}
+.container{width:94%;max-width:1100px;margin:25px auto}
+.notice{background:#fff8dc;padding:12px;border-radius:10px;margin-bottom:20px;text-align:center}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px #0002}
+.card img{width:100%;height:220px;object-fit:cover;display:block;background:#eee}
+.body{padding:15px}.body h3{margin:0 0 8px}.body p{color:#666;line-height:1.45}
+.buttons{display:flex;gap:8px}.btn,button{flex:1;padding:11px;border:0;border-radius:8px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
+.whatsapp{background:#25D366;color:white}.share{background:#111;color:#d4af37}
+footer{background:#111;color:white;text-align:center;padding:25px}footer strong{color:#d4af37}
 </style>
 </head>
 <body>
-<header><div class="bar"><div class="logo">⚡ THUNDER <span>HUB</span> ADMIN</div><button id="logout" class="btn red" style="display:none">Logout</button></div></header>
-<div class="wrap">
-<div id="login" class="card">
-<h2>Admin Login</h2><p>Only your Firebase account should be used here.</p>
-<div id="loginMsg" class="msg" style="display:none"></div>
-<label>Email</label><input id="email" type="email" placeholder="Admin email">
-<label>Password</label><input id="pass" type="password" placeholder="Admin password">
-<button id="loginBtn" class="btn yellow" style="width:100%">🔐 Login</button>
+<header><h1>THUNDER HUB</h1><p>Shop Smart. Shop Thunder.</p></header>
+<section class="hero"><h2>Our Products</h2><p>View our products and chat with us on WhatsApp for price and information.</p></section>
+
+<div class="container">
+<div class="notice">📸 Upload product pictures into the <b>images</b> folder, then add the product below.</div>
+<div class="products" id="productGrid"></div>
 </div>
-<div id="dash" style="display:none">
+
+<footer><strong>Thunder Hub</strong><br><br>WhatsApp: 08032744506</footer>
+
+<script>
+const WHATSAPP="2348032744506";
+
+/* ADD PRODUCTS HERE.
+Example:
+{
+ name:"Samsung Phone",
+ image:"images/samsung.jpg",
+ description:"Quality Samsung phone. Chat with us for price."
+}
+*/
+const products=[
+{name:"Product 1",image:"images/product1.jpg",description:"Quality product. Chat with us on WhatsApp for price and information."},
+{name:"Product 2",image:"images/product2.jpg",description:"Quality product. Chat with us on WhatsApp for price and information."},
+{name:"Product 3",image:"images/product3.jpg",description:"Quality product. Chat with us on WhatsApp for price and information."}
+];
+
+function wa(name){
+return "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hello Thunder Hub, I want information about "+name+".");
+}
+function shareProduct(p){
+const url=location.href.split("#")[0]+"?product="+encodeURIComponent(p.name);
+if(navigator.share){navigator.share({title:p.name+" | Thunder Hub",text:"Check out "+p.name+" on Thunder Hub.",url:url}).catch(()=>{});}
+else{navigator.clipboard.writeText(url).then(()=>alert("Product link copied."));}
+}
+const grid=document.getElementById("productGrid");
+products.forEach((p,i)=>{
+grid.innerHTML+=`
 <div class="card">
-<h2 id="formTitle">Add Product</h2><div id="msg" class="msg" style="display:none"></div>
-<label>Product name</label><input id="name" placeholder="Samsung Galaxy A16">
-<label>Price (₦)</label><input id="price" type="number" min="0" placeholder="250000">
-<label>Category</label><select id="cat"><option>Electronics</option><option>Fashion</option><option>Home</option><option>Beauty</option><option>Grocery</option><option>Others</option></select>
-<label>Description</label><textarea id="desc" placeholder="Product description"></textarea>
-<label>Product picture</label><button id="upload" class="btn green">📸 Choose picture</button>
-<input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" style="display:none">
-<img id="preview" class="preview"><input id="image" type="hidden">
-<div id="uploadMsg" style="font-size:13px;color:#667085;margin:7px 0"></div>
-<button id="save" class="btn yellow">➕ Add Product</button><button id="cancel" class="btn dark" style="display:none">Cancel</button>
-</div>
-<div class="card"><h2>Your Products</h2><div id="list" class="grid">Loading...</div></div>
-</div></div>
-<script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import{getDatabase,ref,push,set,update,remove,onValue,get}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
-const firebaseConfig={
-apiKey:"AIzaSyCXL9pUlMuNySfV6PFeGa8BopcOHhlq0",
-authDomain:"thunder-hub-ab0c4.firebaseapp.com",
-databaseURL:"https://thunder-hub-ab0c4-default-rtdb.firebaseio.com",
-projectId:"thunder-hub-ab0c4",
-storageBucket:"thunder-hub-ab0c4.firebasestorage.app",
-messagingSenderId:"103451755117",
-appId:"1:103451755117:web:bc179aa67863e9756e3564",
-measurementId:"G-YB0BVJSKCP"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app);
-const CLOUD_NAME="hfmbIsed",UPLOAD_PRESET="Thunder_hub";
-let editId=null;
-const $=x=>document.getElementById(x);
-function msg(el,text,ok=false){el.textContent=text;el.style.display="block";el.className="msg "+(ok?"ok":"err")}
-onAuthStateChanged(auth,u=>{$("login").style.display=u?"none":"block";$("dash").style.display=u?"block":"none";$("logout").style.display=u?"block":"none";if(u)load()});
-$("loginBtn").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("pass").value);$("loginMsg").style.display="none"}catch(e){msg($("loginMsg"),"Login failed. Check your email and password.")}};
-$("logout").onclick=()=>signOut(auth);
-$("upload").onclick=()=>$("fileInput").click();
-$("fileInput").addEventListener("change",async e=>{
-const file=e.target.files?.[0];
-if(!file)return;
-if(file.size>10000000){msg($("msg"),"Picture is larger than 10MB.");e.target.value="";return}
-if(!["image/jpeg","image/png","image/webp"].includes(file.type)){msg($("msg"),"Please choose a JPG, PNG or WEBP picture.");e.target.value="";return}
-$("upload").disabled=true;$("upload").textContent="Uploading picture...";msg($("msg"),"Uploading picture...","ok");
-try{
-const form=new FormData();form.append("file",file);form.append("upload_preset",UPLOAD_PRESET);
-const url="https://api.cloudinary.com/v1_1/"+encodeURIComponent(CLOUD_NAME)+"/image/upload";
-const r=await fetch(url,{method:"POST",body:form});
-const data=await r.json();
-if(!r.ok||!data.secure_url)throw new Error(data?.error?.message||"Cloudinary upload failed.");
-$("image").value=data.secure_url;$("preview").src=data.secure_url;$("preview").style.display="block";$("uploadMsg").textContent="Picture uploaded successfully.";msg($("msg"),"Picture uploaded successfully.","ok");
-}catch(err){console.error(err);msg($("msg"),"Picture upload failed: "+err.message);$("uploadMsg").textContent="Upload failed."}
-finally{$("upload").disabled=false;$("upload").textContent="📸 Choose picture";e.target.value=""}
+<img src="${p.image}" alt="${p.name}" onerror="this.alt='Picture not found'">
+<div class="body">
+<h3>${p.name}</h3><p>${p.description}</p>
+<div class="buttons">
+<a class="btn whatsapp" href="${wa(p.name)}" target="_blank">💬 WhatsApp</a>
+<button class="share" onclick="shareProduct(products[${i}])">🔗 Share</button>
+</div></div></div>`;
 });
-$("save").onclick=async()=>{
-const name=$("name").value.trim(),price=Number($("price").value),category=$("cat").value,description=$("desc").value.trim(),image=$("image").value;
-if(!name||!price||!image){msg($("msg"),"Enter name, price and upload a picture.");return}
-try{const data={name,price,category,description,image,updatedAt:Date.now()};if(editId)await update(ref(db,"products/"+editId),data);else{const r=push(ref(db,"products"));await set(r,{...data,createdAt:Date.now()})}msg($("msg"),editId?"Product updated.":"Product added.",true);clearForm()}catch(e){msg($("msg"),"Could not save product: "+e.message)}};
-$("cancel").onclick=clearForm;
-function clearForm(){editId=null;$("formTitle").textContent="Add Product";$("save").textContent="➕ Add Product";$("cancel").style.display="none";["name","price","desc","image"].forEach(x=>$(x).value="");$("preview").style.display="none";$("uploadMsg").textContent=""}
-function load(){onValue(ref(db,"products"),snap=>{const d=snap.val()||{},arr=Object.entries(d).map(([id,p])=>({id,...p}));$("list").innerHTML=arr.length?arr.map(p=>`<div class="item"><img src="${esc(p.image)}"><div class="body"><b>${esc(p.name)}</b><div style="font-size:18px;font-weight:900;margin:7px 0">₦${Number(p.price||0).toLocaleString()}</div><small>${esc(p.category||"Others")}</small><div class="actions" style="margin-top:10px"><button class="btn dark" onclick="editP('${p.id}')">✏️ Edit</button><button class="btn red" onclick="delP('${p.id}')">🗑️ Delete</button></div></div></div>`).join(""):"<p>No products yet.</p>"})}
-window.editP=async id=>{const s=await get(ref(db,"products/"+id)),p=s.val();if(!p)return;editId=id;$("formTitle").textContent="Edit Product";$("save").textContent="💾 Update Product";$("cancel").style.display="inline-block";$("name").value=p.name||"";$("price").value=p.price||"";$("cat").value=p.category||"Others";$("desc").value=p.description||"";$("image").value=p.image||"";$("preview").src=p.image||"";$("preview").style.display=p.image?"block":"none";scrollTo(0,0)}
-window.delP=async id=>{if(confirm("Delete this product?"))try{await remove(ref(db,"products/"+id));msg($("msg"),"Product deleted.",true)}catch(e){msg($("msg"),"Delete failed.")}}
-function esc(x){return String(x||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-</script></body></html>
+</script>
+</body>
+</html>
