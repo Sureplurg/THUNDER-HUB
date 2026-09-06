@@ -62,54 +62,7 @@ let editId=null;
 const $=x=>document.getElementById(x);
 function msg(el,text,ok=false){el.textContent=text;el.style.display="block";el.className="msg "+(ok?"ok":"err")}
 onAuthStateChanged(auth,u=>{$("login").style.display=u?"none":"block";$("dash").style.display=u?"block":"none";$("logout").style.display=u?"block":"none";if(u)load()});
-function authMessage(e){
-  const c=e?.code||"";
-
-  if(c==="auth/invalid-api-key")
-    return "Firebase API key is invalid.";
-
-  if(c==="auth/invalid-credential")
-    return "Email or password is incorrect.";
-
-  if(c==="auth/user-not-found")
-    return "This admin email is not registered in Firebase Authentication.";
-
-  if(c==="auth/wrong-password")
-    return "The password is incorrect.";
-
-  if(c==="auth/too-many-requests")
-    return "Too many login attempts. Wait a little and try again.";
-
-  if(c==="auth/network-request-failed")
-    return "Network problem. Check your internet connection.";
-
-  return "Login failed: "+(c||e?.message||"Please check Firebase settings.");
-}
-
-$("loginBtn").onclick=async()=>{
-  msg($("loginMsg"),"");
-
-  const email=$("email").value.trim();
-  const password=$("pass").value;
-
-  if(!email||!password){
-    msg($("loginMsg"),"Enter your email and password.");
-    return;
-  }
-
-  $("loginBtn").disabled=true;
-  $("loginBtn").textContent="Logging in...";
-
-  try{
-    await signInWithEmailAndPassword(auth,email,password);
-  }catch(e){
-    console.error(e);
-    msg($("loginMsg"),authMessage(e));
-  }finally{
-    $("loginBtn").disabled=false;
-    $("loginBtn").textContent="🔐 Login";
-  }
-};
+$("loginBtn").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("pass").value);$("loginMsg").style.display="none"}catch(e){msg($("loginMsg"),"Login failed. Check your email and password.")}};
 $("logout").onclick=()=>signOut(auth);
 $("upload").onclick=()=>$("fileInput").click();
 $("fileInput").addEventListener("change",async e=>{
